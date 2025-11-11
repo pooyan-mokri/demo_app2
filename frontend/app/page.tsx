@@ -8,7 +8,7 @@ export default function HomePage() {
         فروش، خرید، انبار و حسابداری تموک را در یک داشبورد یکپارچه مدیریت کنید.
       </p>
       <Link
-        href="/(auth)/login"
+        href="/login"
         className="rounded-xl bg-brand-primary px-6 py-3 text-white shadow-lg transition hover:bg-indigo-700"
       >
         ورود به سامانه

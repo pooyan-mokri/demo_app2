@@ -43,9 +43,22 @@ export const useAuthStore = create<AuthState>()(
   )
 );
 
+function normalizeHeaders(headers?: HeadersInit): Record<string, string> {
+  if (!headers) {
+    return {};
+  }
+  if (headers instanceof Headers) {
+    return Object.fromEntries(headers.entries());
+  }
+  if (Array.isArray(headers)) {
+    return Object.fromEntries(headers);
+  }
+  return { ...headers };
+}
+
 export async function authenticatedFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const { tokens } = useAuthStore.getState();
-  const headers: HeadersInit = { ...(options?.headers || {}) };
+  const headers = normalizeHeaders(options?.headers);
   if (tokens?.accessToken) {
     headers["Authorization"] = `Bearer ${tokens.accessToken}`;
   }

@@ -1,10 +1,17 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Package, ShoppingCart, Receipt, Warehouse } from "lucide-react";
+import { Home, Package, ShoppingCart, Receipt, Warehouse, type LucideIcon } from "lucide-react";
 
-const links = [
+type NavLink = {
+  href: Route;
+  label: string;
+  icon: LucideIcon;
+};
+
+const links: NavLink[] = [
   { href: "/dashboard", label: "داشبورد", icon: Home },
   { href: "/products", label: "محصولات", icon: Package },
   { href: "/sales", label: "فروش", icon: ShoppingCart },

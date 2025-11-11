@@ -20,3 +20,9 @@
    npm run dev
    ```
 3. تنظیم متغیر `NEXT_PUBLIC_API_URL` برای اتصال به API.
+
+## استقرار روی Netlify
+1. این ریپو را به Netlify متصل کنید (Deployment base = `frontend`).
+2. دستور ساخت به صورت `npm run build` و مسیر خروجی `.next` (با کمک فایل `netlify.toml`) تنظیم شده است.
+3. متغیر محیطی `NEXT_PUBLIC_API_URL` و سایر مقادیر لازم برای اتصال به بک‌اند را در محیط Netlify تعریف کنید.
+4. افزونه `@netlify/plugin-nextjs` به عنوان devDependency اضافه شده است و در Netlify به صورت خودکار اجرا می‌شود.
