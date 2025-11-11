@@ -7,7 +7,7 @@
 - `frontend/` اپلیکیشن Next.js با Tailwind RTL، React Query و Zustand
 
 ## اجرای محلی
-1. محیط پایتون ایجاد و نصب وابستگی‌ها:
+1. محیط پایتون (نسخه‌ی 3.11) ایجاد و نصب وابستگی‌ها:
    ```bash
    cd backend
    pip install -r requirements.txt
