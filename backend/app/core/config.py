@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     app_name: str = "TheMoak ERP API"
     debug: bool = False
 
-    database_url: str = "postgresql+psycopg://postgres:postgres@localhost:5432/themoak"
+    database_url: str | None = None
 
     secret_key: str = "super-secret-key-change-me"
     access_token_expire_minutes: int = 30

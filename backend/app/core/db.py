@@ -1,19 +1,18 @@
 from __future__ import annotations
 
+import os
 from collections.abc import Generator
 
-from sqlmodel import Session, SQLModel, create_engine
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlmodel import Session, SQLModel
 
-from .config import get_settings
-
-settings = get_settings()
-DATABASE_URL = settings.database_url
-
+DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
-    msg = "THEMOAK_DATABASE_URL environment variable must be set before using the database engine."
-    raise RuntimeError(msg)
+    raise RuntimeError("DATABASE_URL environment variable not set!")
 
-engine = create_engine(DATABASE_URL, echo=settings.debug, pool_pre_ping=True)
+engine = create_engine(DATABASE_URL, pool_pre_ping=True)
+SessionLocal = sessionmaker(class_=Session, autocommit=False, autoflush=False, bind=engine)
 
 
 def init_db() -> None:
@@ -23,5 +22,8 @@ def init_db() -> None:
 
 
 def get_session() -> Generator[Session, None, None]:
-    with Session(engine) as session:
+    session = SessionLocal()
+    try:
         yield session
+    finally:
+        session.close()
