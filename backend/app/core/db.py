@@ -7,7 +7,13 @@ from sqlmodel import Session, SQLModel, create_engine
 from .config import get_settings
 
 settings = get_settings()
-engine = create_engine(settings.database_url, echo=settings.debug, pool_pre_ping=True)
+DATABASE_URL = settings.database_url
+
+if not DATABASE_URL:
+    msg = "THEMOAK_DATABASE_URL environment variable must be set before using the database engine."
+    raise RuntimeError(msg)
+
+engine = create_engine(DATABASE_URL, echo=settings.debug, pool_pre_ping=True)
 
 
 def init_db() -> None:
