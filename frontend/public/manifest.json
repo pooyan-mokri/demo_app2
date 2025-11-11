@@ -1,0 +1,9 @@
+{
+  "name": "TheMoak ERP",
+  "short_name": "TheMoak",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FB",
+  "theme_color": "#2E3EBB",
+  "icons": []
+}
